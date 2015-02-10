@@ -47,7 +47,8 @@ public class KNNDriver extends Configured implements Tool {
             //asign the job
             job.setMapperClass(KNNMapper.class);
             job.setReducerClass(KNNReducer.class);
-            job.setCombinerClass(KNNCombiner.class);
+            //do not use the combiner
+//            job.setCombinerClass(KNNCombiner.class);
             job.setOutputKeyClass(Text.class);
             job.setMapOutputValueClass(Vector2SF.class);
             job.setOutputValueClass(SparseVector.class);
@@ -56,7 +57,6 @@ public class KNNDriver extends Configured implements Tool {
             
             //inputData path
             FileInputFormat.addInputPath(job, new Path(args[0]));
-            
             
             //outputData path
             Path out = new Path(args[1]);

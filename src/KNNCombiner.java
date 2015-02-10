@@ -22,8 +22,11 @@ public class KNNCombiner extends Reducer<Text, Vector2SF, Text, Vector2SF> {
 		for (Vector2SF v : value) {
 			//getV1() is to get the label, getV2() is to get the distance
 			vs.add(new Vector2SF(v.getV1(), v.getV2()));
+//			System.out.print("in the combiner, vs getV1() is:"+v.getV1()+" vs getV2() is:"+v.getV2());
 		}
+//		System.out.println();
         
+		
 		System.out.println("************************");
 		System.out.println("vs in combiner is:"+vs);
 		System.out.println("vs in combiner size is:"+vs.size());

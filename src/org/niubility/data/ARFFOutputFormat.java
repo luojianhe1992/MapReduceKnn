@@ -39,15 +39,47 @@ public class ARFFOutputFormat extends TextOutputFormat<Text, SparseVector> {
         //各个class直接key和value之间的数据传递
         public synchronized void write(Text key, SparseVector value)
                 throws IOException {
+        	
             StringBuffer sb = new StringBuffer();
 
             SortedMap<String, Float> map = new TreeMap<String, Float>(value);
+            
+            System.out.println("*****************************");
+        	System.out.println("variable key in the ARFFOutputFormat is:"+key);
+        	System.out.println("variable value in the ARFFOutputFormat is:"+value);
+        	System.out.println("variable map in the ARFFOutputFormat is:"+map);
+        	System.out.println("*****************************");
+            
+            
             for (String col : map.keySet()) {
                 sb.append(col + " " + map.get(col) + ",");
+                System.out.println("variable col in the AFFOutputFormat is:"+col);
+                System.out.println("map.get(col) in the AFFOutputFormat is:"+map.get(col));
             }
+            
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(key.toString());
+            sb2.delete(sb2.length() - 10, sb2.length() - 1);
+            
+            String []line =  sb2.toString().split("[ \\r\\n]+");
+            
+            System.out.println("*******************************");
+            System.out.print("line 0 is:"+line[0]);
+            System.out.print(" line 1 is:"+line[1]);
+            System.out.println("*******************************");
+            
+            
+            Text featureText = new Text(line[1]);
+            Text labelText = new Text(line[0]);
+            
+            w.write(new Text(line[1]), new Text(line[0]));
+            
+            /*
             // remove the "," at the ending
             w.write(new Text("{" + SparseVector.ID + " " + key), new Text(sb.substring(0,
                     sb.length() - 1) + "}"));
+            */
+            
         }
 
         @Override
