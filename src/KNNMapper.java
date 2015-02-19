@@ -32,8 +32,6 @@ public class KNNMapper extends Mapper<Text, SparseVector, Text, Vector2SF> {
             org.apache.hadoop.mapreduce.Mapper<Text, SparseVector, Text, Vector2SF>.Context context)
             throws java.io.IOException, InterruptedException {
     	
-    	
-    	
     	//set up the training data
         String trainingDataName = "iris_train2.csv";
         

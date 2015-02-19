@@ -69,8 +69,10 @@ public class KNNReducer extends Reducer<Text, Vector2SF, Text, SparseVector> {
         System.out.println("**************************");
         
         
-        //the knn default k is 4
-        int k = context.getConfiguration().getInt("org.niubility.knn.k", 4);
+        //the knn default k is 5
+        int k = context.getConfiguration().getInt("org.niubility.knn.k", 5);
+        
+        System.out.println("the default k is:"+k);
         
         
         SparseVector sp = new SparseVector();
